@@ -139,11 +139,11 @@
                         <form action="" method="post">
                            <div class="form-group">
                               <label>Admin ID</label>
-                              <input type="text" class="form-control" name="adminId" placeholder="admin ID" required>
+                              <input type="text" class="form-control" name="adminId" value="admin" placeholder="admin ID" required>
                            </div>
                            <div class="form-group">
                               <label>admin Password</label>
-                              <input type="password" class="form-control" name="password" placeholder="password" required>
+                              <input type="password" class="form-control" name="password" value="admin" placeholder="password" required>
                            </div>                               
                            <button type="submit" name="adminLogin" class="btn btn-info">Login</button>
                         </form>                 
