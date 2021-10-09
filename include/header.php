@@ -18,29 +18,21 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-               <!-- Left Side Of Navbar -->
-               <ul class="navbar-nav navbar-light ml-auto">
-                  <li class="nav-item active">
-                     <a class="btn btn-light" href="index.php">Home</a>
-                  </li>
-                  <?php if (!isset($_SESSION['adminLogin'])) { ?>
-                  <li class="nav-item active">
-                     <a class="btn btn-light" href="admin.php">Add Item</a>
-                  </li>
-                  <li class="nav-item active">
-                     <a class="btn btn-light" href="admin.php">Login</a>
-                  </li>
+               <div class="btn-group ml-auto">
+                  <a class="btn btn-warning" href="index.php">Home</a>
+                  <?php if (!isset($_SESSION['userLogin'])) { ?>   
+                     <a class="btn btn-light" href="user.php">Add Item</a>
+                     <a class="btn btn-danger" href="user.php">Login</a>
+                     <a class="btn btn-primary" href="registration.php">Registration</a>
                   <?php } ?>
-                  <?php if (isset($_SESSION['adminLogin'])) { ?>
-                  <li class="nav-item active">
-                     <a class="btn btn-light" href="admin.php">Admin</a>
-                  </li>
-                  <li class="nav-item active">
+
+                  <?php if (isset($_SESSION['userLogin'])) { ?>
+                     <a class="btn btn-light" href="user.php">User</a>
                      <a class="btn btn-danger" href="logout.php">Logout</a>
-                  </li>
                   <?php } ?>
-               </ul>
+               </div>
             </div>
          </div>
       </nav>

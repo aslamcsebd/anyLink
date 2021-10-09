@@ -19,8 +19,7 @@
    .navbar-light .navbar-nav .nav-link:focus { 
       color: #000; background-color: cyan; border-radius: 0.25rem;
    }
-
-   .wrapper .card-header{ color: #fff; text-align: center; font-size: 18px; padding: 8px;}
+   .wrapper .card-header{ color: #fff; text-align: center; font-size: 18px; padding: 8px; }
 
 .footer {
   height: auto;   
@@ -47,11 +46,6 @@
 
 .footer img{ width: 60px; height: 60px; border-radius: 50%; padding: 0.1rem; margin: 0px; }
 
-
-
-
-
-
 @media only screen and (max-width: 414px) {
 
    .navbar-light .navbar-toggler { border-color: #fff; }
@@ -77,11 +71,5 @@
    .dataTables_wrapper .dataTables_paginate {
     margin-top: 0.5em;
     margin: auto -1.3em;
+   }
 }
-
-
-   
-}
-
-
-

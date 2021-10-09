@@ -1,11 +1,11 @@
 <?php 
    include('connection.php');
    $conn=DB_connect();
-   $sql="select * from item_url";
+   $sql="select * from items where status='1'";
    $result=mysqli_query($conn,$sql); 
    $rowCount = mysqli_num_rows($result);
    
-   $sql2 = "select * from item_url order by id desc limit 10";
+   $sql2 = "select * from items where status='1' order by id desc limit 10";
    $topTen=mysqli_query($conn,$sql2); 
    include('include/header.php'); 
 ?>
@@ -20,11 +20,11 @@
                         <?php echo $_SESSION['itemDelete']?>
                      </div>
                   <?php } ?> 
-                  <div class="card-header bg-info">Item List</div>
+                  <div class="card-header bg-info">All user publication list</div>
                   <div class="card-body">
                      <table id="search" class="table table-bordered text-center">
                         <thead class="thead-dark">
-                           <tr>                              
+                           <tr>
                               <th>Name</th>
                               <th>Description</th>                             
                               <th>Action</th>
@@ -36,13 +36,13 @@
                         <tbody>
                            <?php while($row = mysqli_fetch_assoc($result)) { ?>
                               <tr>                                 
-                                 <td><?= $row['itemName']; ?></td>
+                                 <td><?= $row['name']; ?></td>
                                  <td>
                                     <a href="view.php?id=<?php echo $row['id']; ?>&from=<?= $_SERVER['PHP_SELF']; ?>" class="description btn btn-default"><?= substr($row['description'], 0, 80) . '...' ?>
                                     </a>
                                  </td>
                                  <td>
-                                    <a class="btn btn-sm btn-success tn-block" href="<?= $row['visiteLink']; ?>" target="_blank">Go->Visite</a>
+                                    <a class="btn btn-sm btn-success tn-block" href="<?= $row['url']; ?>" target="_blank">Go->Visite</a>
                                  </td>
                               
                                  <?php if (isset($_SESSION['adminLogin'])) { ?>
@@ -75,8 +75,8 @@
                               <tr>
                                  <td>
                                     <span>
-                                       <a href="<?php echo $row['visiteLink']; ?>" target="_blank">
-                                          <?= $row['itemName']; ?>
+                                       <a href="<?php echo $row['url']; ?>" target="_blank">
+                                          <?= $row['name']; ?>
                                        </a>
                                     </span>                                       
                                  </td>
