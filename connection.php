@@ -3,7 +3,7 @@
    session_start();
    
    function DB_connect() {
-      $conn =mysqli_connect('localhost', 'root', '' ,'anyLink');
+      $conn =mysqli_connect('localhost', 'root', '' ,'anylink');
       return $conn;
    }
 ?>

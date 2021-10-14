@@ -3,7 +3,7 @@
    $conn=DB_connect();
 
    $sql = "select * from items where status='1'";
-   $result = mysqli_query($conn,$sql); 
+   $result = mysqli_query($conn,$sql);
    $rowCount = mysqli_num_rows($result);
    
    if (isset($_SESSION['userId'])==true) {
@@ -130,7 +130,7 @@
 
             <!-- user login -->
             <?php if (!isset($_SESSION['userLogin']) && (isset($_POST['login']) || isset($_POST['userLogin']))) { ?>
-               <div class="col-12 col-sm-6 col-md-3">
+               <div class="col-12 col-sm-6 col-md-4">
                   <?php if (isset($_SESSION['userLoginFail'])) { ?>
                      <div class="alert alert-danger">                           
                         <?php echo $_SESSION['userLoginFail']?>
@@ -215,7 +215,7 @@
 
             <!-- Insert data -->
             <?php if ((isset($_SESSION['userLogin']) && isset($_POST['addItem'])) || isset($_POST['addItemNow'])) { ?>
-               <div class="col-12 col-sm-6 col-md-3">
+               <div class="col-12 col-sm-6 ol-md-5 col-lg-4">
                   <?php if(isset($_SESSION['InsertSuccessfully'])) { ?>
                      <div class="alert alert-success">
                         <?php echo $_SESSION['InsertSuccessfully']?>
@@ -236,11 +236,11 @@
                         <form action="" method="post">
                            <div class="form-group">
                               <label>Link name</label>
-                              <input type="text" class="form-control" name="name" placeholder="Link name" required>
+                              <input type="text" class="form-control" name="name" placeholder="Ex: Facebook, Instagram etc..." required>
                            </div>                              
                            <div class="form-group">
                               <label>Description</label>
-                              <textarea type="text" class="form-control" name="description" placeholder="Full description"></textarea>                                 
+                              <textarea type="text" class="form-control" name="description" placeholder="Ex: This is a full description etc..."></textarea>                                 
                            </div>
                            <div class="form-group">
                               <label>Url [Visite link]</label>
@@ -304,20 +304,20 @@
                                           <tr>                                 
                                              <td><?= $row['name']; ?></td>
                                              <td>
-                                                <a href="view.php?id=<?php echo $row['id']; ?>&from=<?= $_SERVER['PHP_SELF']; ?>" class="description btn btn-default"><?= substr($row['description'], 0, 80) . '...' ?>
+                                                <a href="view.php?id=<?php echo $row['id']; ?>&from=<?= $_SERVER['PHP_SELF']; ?>" class="description btn btn-default" title="Click and see full details"><?= substr($row['description'], 0, 80) . '...' ?>
                                                 </a>
                                              </td>
                                              <td>
-                                                <a class="btn btn-sm btn-success btn-block" href="<?= $row['url']; ?>" target="_blank">Go->Visite</a>
+                                                <a class="btn btn-sm btn-success btn-block" href="<?= $row['url']; ?>" target="_blank" title="Click and visite this link">Go->Visite</a>
                                              </td>
                                           
                                              <?php if (isset($_SESSION['userLogin'])) { ?>
                                                 <td>
                                                    <div class="btn-group">
                                                       <?php if($row['status'] == '1') { ?> 
-                                                            <a class="btn btn-sm btn-success" href="action.php?status=<?= $row['status']; ?>&id=<?php echo $row['id']; ?>">Publish</a>
+                                                            <a class="btn btn-sm btn-success" href="action.php?status=<?= $row['status']; ?>&id=<?php echo $row['id']; ?>" title="Publish means other user can see your link">Publish</a>
                                                          <?php }else{ ?>
-                                                            <a class="btn btn-sm btn-info" href="action.php?status=<?= $row['status']; ?>&id=<?php echo $row['id']; ?>">Unpublish</a>
+                                                            <a class="btn btn-sm btn-info" href="action.php?status=<?= $row['status']; ?>&id=<?php echo $row['id']; ?>" title="Unpublish means other user can't see your link">Unpublish</a>
                                                          <?php } ?>
                                                       <a class="btn btn-sm btn-danger" href="action.php?itemIdFromAdmin=<?php echo $row['id']; ?>">Delete</a>
                                                    </div>

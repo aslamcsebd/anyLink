@@ -28,7 +28,7 @@
                               <th>Name</th>
                               <th>Description</th>                             
                               <th>Action</th>
-                              <?php if (isset($_SESSION['adminLogin'])) { ?>
+                              <?php if (isset($_SESSION['userLogin'])) { ?>
                                  <th>Decision</th>
                               <?php } ?>                  
                            </tr>
@@ -38,17 +38,27 @@
                               <tr>                                 
                                  <td><?= $row['name']; ?></td>
                                  <td>
-                                    <a href="view.php?id=<?php echo $row['id']; ?>&from=<?= $_SERVER['PHP_SELF']; ?>" class="description btn btn-default"><?= substr($row['description'], 0, 80) . '...' ?>
+                                    <a href="view.php?id=<?php echo $row['id']; ?>&from=<?= $_SERVER['PHP_SELF']; ?>" class="description btn btn-default" title="Click and see full details"><?= substr($row['description'], 0, 80) . '...' ?>
                                     </a>
                                  </td>
                                  <td>
-                                    <a class="btn btn-sm btn-success tn-block" href="<?= $row['url']; ?>" target="_blank">Go->Visite</a>
+                                    <a class="btn btn-sm btn-success tn-block" href="<?= $row['url']; ?>" target="_blank" title="Click and visite this link">Go->Visite</a>
                                  </td>
                               
-                                 <?php if (isset($_SESSION['adminLogin'])) { ?>
-                                    <td>
-                                       <a class="btn btn-sm btn-danger"  href="action.php?itemIdFromIndex=<?php echo $row['id']; ?>">Delete</a>
-                                       <!-- onclick="return confirm('Are you sure?')" -->
+                                 <?php if (isset($_SESSION['userLogin'])) { ?>
+                                    <td width="20%">
+                                       <?php if ($_SESSION['userId']==$row['userId']) { ?>
+                                          <div class="btn-group">
+                                             <?php if($row['status'] == '1') { ?> 
+                                                   <a class="btn btn-sm btn-success" href="action.php?status=<?= $row['status']; ?>&id=<?php echo $row['id']; ?>" title="Publish means other user can see your link">Publish</a>
+                                                <?php }else{ ?>
+                                                   <a class="btn btn-sm btn-info" href="action.php?status=<?= $row['status']; ?>&id=<?php echo $row['id']; ?>" title="Unpublish means other user can't see your link">Unpublish</a>
+                                                <?php } ?>
+                                             <a class="btn btn-sm btn-danger" href="action.php?itemIdFromAdmin=<?php echo $row['id']; ?>">Delete</a>
+                                          </div>
+                                       <?php }else{ ?>
+                                          <span class="bg-info p-1 text-light">It is another user's assets </span>
+                                       <?php } ?>
                                     </td>
                                  <?php } ?>
                               </tr>
@@ -75,8 +85,17 @@
                               <tr>
                                  <td>
                                     <span>
-                                       <a href="<?php echo $row['url']; ?>" target="_blank">
-                                          <?= $row['name']; ?>
+                                       <a href="<?php echo $row['url']; ?>" target="_blank" 
+                                          <?= (isset($_SESSION['userId'])==true) ?   
+                                                (($_SESSION['userId']==$row['userId']) ? 
+                                                   'title="It is your assets"' : '') :
+                                                ''; ?>>
+                                          
+                                          <?= (isset($_SESSION['userId'])==true) ?
+                                                (($_SESSION['userId']==$row['userId']) ?
+                                                   '<i class="far fa-check-circle"></i>' : '') : 
+                                                '' ?> 
+                                          <?= $row['name']; ?> 
                                        </a>
                                     </span>                                       
                                  </td>

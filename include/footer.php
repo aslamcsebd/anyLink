@@ -2,8 +2,25 @@
       <footer class="footer">
          <div class="text-center">
             <!-- © <?= date('Y'); ?> Copyright -->
+
+            <style>
+.zoom2 {
+  padding: 50px;
+  background-color: green;
+  transition: transform .2s; /* Animation */
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  margin-bottom: 5rem;
+}
+</style>
+
             <ul>
-               <li>
+               <li class="zoom">
                   <a href="https://www.facebook.com/aslamcsebd" target="_blank">
                      <img src="include/admin.jpg" alt="No Image Found" width="50">
                   </a>
